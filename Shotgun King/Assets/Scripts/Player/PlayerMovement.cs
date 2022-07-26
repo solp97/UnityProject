@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private float totalTime = 1f;
 
     [SerializeField]
-    private float jumpForce = 1.0f;
+    private float jumpForce = 0.2f;
 
     public void isCanMove(Transform Player, Vector3 target)
     {

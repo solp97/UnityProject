@@ -523,7 +523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0.428, z: -0.282}
+  m_LocalPosition: {x: 0, y: 0.477, z: -0.284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -672,8 +672,11 @@ MonoBehaviour:
   minDistance: 3
   spread: 57
   Knockback: 0
+  InitIemainAmmo: 5
+  InitAmmoInMagazine: 2
   IemainAmmo: 5
   AmmoInMagazine: 2
+  bulletPrefab: {fileID: 4230139251027749137, guid: b56f0956cf3186d40a6abfd9801e0906, type: 3}
 --- !u!114 &1775121510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _board: {fileID: 1863693479}
   isMove: 0
-  jumpForce: 1
+  jumpForce: 0.2
 --- !u!114 &1775121511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,9 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5b90cafcff5bc48a194bf7272feeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanShot: 0
-  CanReload: 0
-  CanRecharge: 0
+  IsDead: 0
 --- !u!4 &1775121513
 Transform:
   m_ObjectHideFlags: 0
@@ -761,6 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2312052cde2ca14abc3068b4c609199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Turn: 0
 --- !u!4 &1853835296
 Transform:
   m_ObjectHideFlags: 0

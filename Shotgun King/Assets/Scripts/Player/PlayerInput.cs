@@ -13,10 +13,5 @@ public class PlayerInput : MonoBehaviour
             return;
         }
         Mouse = Input.GetMouseButtonDown(0);
-        Debug.DrawLine(transform.position, transform.forward * 10f, Color.black);
-        Vector3 referenceVector = Quaternion.AngleAxis(22.5f, Vector3.up) * transform.forward;
-        Debug.DrawLine(transform.position, referenceVector * 10f, Color.red);
-
-
     }
 }
