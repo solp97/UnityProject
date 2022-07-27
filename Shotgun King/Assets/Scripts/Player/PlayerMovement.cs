@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     };
     private static readonly int[] dx = { 1, 1, 0, -1, -1, -1, 0, 1 };
     private static readonly int[] dy = { 0, -1, -1, -1, 0, 1, 1, 1 };
-    private bool isLeft;
 
     public bool isMove = false;
 
@@ -100,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
         //transform.position = _board.BoardPan[nx, ny];
         _board.PlayerPos = new GridIndex(nx, ny);
-
+        Debug.Log(_board.PlayerPos);
     }
 
     // 베지에 곡선을 통한 점프

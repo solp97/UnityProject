@@ -18,6 +18,7 @@ public struct GridIndex : IEquatable<GridIndex>
 
     public GridIndex(int x, int y)
     {
+        
         X = x;
         Y = y;
     }
@@ -32,10 +33,12 @@ public struct GridIndex : IEquatable<GridIndex>
 
     public override bool Equals(object obj)
     {
-        if (obj is GridIndex idx) {
+        if (obj is GridIndex idx)
+        {
             return Equals(idx);
         }
-        else {
+        else
+        {
             return false;
         }
     }

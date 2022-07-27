@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
+    public enum State
+    {
+        empty,
+        full,
+        preemption
+    }
+
 
     public Vector3[,] BoardPan = new Vector3[8, 8];
+    public State[,] state = new State[8, 8];
+
 
     public GridIndex PlayerPos;
     private void Awake()

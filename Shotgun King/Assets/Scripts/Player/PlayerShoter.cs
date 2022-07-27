@@ -4,32 +4,41 @@ using UnityEngine;
 
 public class PlayerShoter : MonoBehaviour
 {
-    public GunData Data;
-    public int Damage = 4;
-    public float MaxDistance = 5;
-    public float minDistance = 3;
-    public int spread = 57;
-    public int Knockback = 0;
+    [SerializeField]
+    private GunData Data;
+
+    [SerializeField]
+    private int Damage = 4;
+
+    [SerializeField]
+    private float MaxDistance = 5;
+
+    [SerializeField]
+    private float minDistance = 3;
+
+    [SerializeField]
+    private int spread = 57;
+
+    [SerializeField]
+    private int Knockback = 0;
+
 
     public int InitIemainAmmo = 5;
     public int InitAmmoInMagazine = 2;
-
     public int IemainAmmo;
-
     public int AmmoInMagazine;
-
     private int _rechargeAmmo = 1;
 
-    public GameObject bulletPrefab;
-
     public Queue<GameObject> Bullets = new Queue<GameObject>();
+    public GameObject bulletPrefab;
+    public GameObject Magazine;
 
 
     private void Awake()
     {
         for (int i = 0; i < 100; ++i)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
+            GameObject bullet = Instantiate(bulletPrefab, Magazine.transform);
             Bullets.Enqueue(bullet);
             bullet.SetActive(false);
         }
@@ -58,7 +67,7 @@ public class PlayerShoter : MonoBehaviour
             bullet.transform.position = transform.position;
 
             bullet.transform.rotation = Quaternion.FromToRotation(bullet.transform.forward, Quaternion.AngleAxis(Random.Range(-spread / 2, spread / 2), Vector3.up) * dir);
-            bullet.GetComponent<Bullet>().distance = Random.Range(minDistance, MaxDistance) * 0.06f/100;
+            bullet.GetComponent<Bullet>().distance = Random.Range(minDistance, MaxDistance) * 0.06f / 100;
 
             bullet.SetActive(true);
             Bullets.Enqueue(bullet);

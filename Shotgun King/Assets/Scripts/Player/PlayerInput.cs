@@ -13,5 +13,6 @@ public class PlayerInput : MonoBehaviour
             return;
         }
         Mouse = Input.GetMouseButtonDown(0);
+        Debug.DrawLine(transform.position,transform.forward*10f);
     }
 }
