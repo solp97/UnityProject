@@ -10,6 +10,7 @@ public class Gamemanager : SingletonBehaviour<Gamemanager>
     public PlayerController _player;
 
     public event UnityAction<GridIndex> OnTurnEnd;
+    public event UnityAction NextStage;
     public Board Board;
 
     private void Awake()

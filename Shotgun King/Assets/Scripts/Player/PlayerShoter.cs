@@ -17,7 +17,7 @@ public class PlayerShoter : MonoBehaviour
     private float minDistance = 3;
 
     [SerializeField]
-    private int spread = 57;
+    public int spread = 57;
 
     [SerializeField]
     private int Knockback = 0;

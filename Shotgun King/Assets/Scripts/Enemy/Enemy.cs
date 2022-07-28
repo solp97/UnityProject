@@ -12,6 +12,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _jumpForce = 0.2f;
 
+    public bool IsCheckMate;
+
+    public Board Board;
+
     public enum EMovementType
     {
         Jump,
@@ -44,7 +48,7 @@ public class Enemy : MonoBehaviour
         else
         {
             Vector3 target;
-            Findtarget(playerPos, out target);
+            arrivalPosition(playerPos, out target);
             Move(transform.position, target);
             RemainingCooltime = InitCooltime;
         }
@@ -56,9 +60,10 @@ public class Enemy : MonoBehaviour
         
     }
 
-    virtual protected void Findtarget(GridIndex targetGrid, out Vector3 target)
+    virtual protected void arrivalPosition(GridIndex targetGrid, out Vector3 target)
     {        
         target = Vector3.zero;
+
     }
 
     public void Move(Vector3 startPos, Vector3 targetPos)

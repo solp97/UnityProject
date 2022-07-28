@@ -355,6 +355,7 @@
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/Enemy/Bishop.cs"
 "Assets/Scripts/Enemy/Enemy.cs"
+"Assets/Scripts/Enemy/EnemyCorl.cs"
 "Assets/Scripts/Enemy/King.cs"
 "Assets/Scripts/Enemy/Knight.cs"
 "Assets/Scripts/Enemy/Pawn.cs"
