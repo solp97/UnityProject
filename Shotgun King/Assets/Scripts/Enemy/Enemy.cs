@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    Queue<GridIndex> queue = new Queue<GridIndex>();
+
     public int InitCooltime;
     public int RemainingCooltime;
     public int Helth;
@@ -15,6 +17,9 @@ public class Enemy : MonoBehaviour
     public bool IsCheckMate;
 
     public Board Board;
+
+    public int[,] Weight = new int[8, 8];
+
 
     public enum EMovementType
     {
@@ -29,7 +34,6 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _moveType = EMovementType.Jump;
-
     }
 
     private void OnEnable()
@@ -55,15 +59,67 @@ public class Enemy : MonoBehaviour
 
     }
 
-    virtual protected void CheckAttak(GridIndex playerPos)
+    protected virtual void CheckAttak(GridIndex playerPos)
     {
-        
+        foreach (GridIndex index in MoveDir)
+        {
+            for (int i = 1; i <= MoveCount; ++i)
+            {
+                GridIndex newIndex = pos + (index * i);
+                if (newIndex.X < 0 || newIndex.X > 7 || newIndex.Y < 0 || newIndex.Y > 7)
+                    break;
+                if (Board.state[newIndex.X, newIndex.Y] != Board.State.empty)
+                    break;
+                if (newIndex == playerPos)
+                    Debug.Log("Á×À½");
+            }
+        }
     }
 
-    virtual protected void arrivalPosition(GridIndex targetGrid, out Vector3 target)
-    {        
-        target = Vector3.zero;
+    protected virtual void arrivalPosition(GridIndex targetGrid, out Vector3 target)
+    {
+        GridIndex bestposition = new GridIndex();
+        CalIncrease(targetGrid);
+        foreach (GridIndex j in MoveDir)
+        {
+            for (int i = 1; i <= MoveCount; ++i)
+            {
+                GridIndex newIndex = pos + (j * i);
+                if (newIndex.X < 0 || newIndex.X > 7 || newIndex.Y < 0 || newIndex.Y > 7)
+                    break;
+                if (Board.state[newIndex.X, newIndex.Y] != Board.State.empty)
+                    break;
+                queue.Enqueue(newIndex);
+            }
+        }
+        int bestWeight = 0;
+        while (queue.Count != 0)
+        {
+            GridIndex searchPos = queue.Dequeue();
+            int weight = 0;
+            foreach (GridIndex index in MoveDir)
+            {
+                for (int i = 1; i <= MoveCount; ++i)
+                {
+                    GridIndex newIndex = searchPos + (index * i);
+                    if (newIndex.X < 0 || newIndex.X > 7 || newIndex.Y < 0 || newIndex.Y > 7)
+                        break;
+                    if (Board.state[newIndex.X, newIndex.Y] != Board.State.empty)
+                        break;
 
+                    weight += Weight[newIndex.X, newIndex.Y];
+                }
+            }
+            if (bestWeight <= weight)
+            {
+                bestWeight = weight;
+                bestposition = searchPos;
+            }
+
+        }
+
+        pos = bestposition;
+        target = Board.BoardPan[bestposition.X, bestposition.Y];
     }
 
     public void Move(Vector3 startPos, Vector3 targetPos)
@@ -145,6 +201,21 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
+    }
+
+    public void CalIncrease(GridIndex index)
+    {
+        System.Array.Clear(Weight, 0, 8 * 8);
+        Weight[index.X, index.Y] = 2;
+        GridIndex[] di = new GridIndex[8] { new GridIndex(0, 1), new GridIndex(-1, 1), new GridIndex(-1, 0), new GridIndex(-1, -1), new GridIndex(0, -1), new GridIndex(1, -1), new GridIndex(1, 0), new GridIndex(1, 1) };
+
+        for (int i = 0; i < 8; ++i)
+        {
+            GridIndex newIndex = index + di[i];
+            if (newIndex.X < 0 || newIndex.X > 7 || newIndex.Y < 0 || newIndex.Y > 7)
+                continue;
+            Weight[newIndex.X, newIndex.Y] = 1;
+        }
     }
 
 

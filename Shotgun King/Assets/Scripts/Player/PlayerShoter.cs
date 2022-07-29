@@ -33,6 +33,8 @@ public class PlayerShoter : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject Magazine;
 
+    private PlayerController _controller;
+
 
     private void Awake()
     {
@@ -42,6 +44,8 @@ public class PlayerShoter : MonoBehaviour
             Bullets.Enqueue(bullet);
             bullet.SetActive(false);
         }
+
+        _controller = GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -74,6 +78,8 @@ public class PlayerShoter : MonoBehaviour
         }
         --AmmoInMagazine;
 
+        // yield return new WaitForSeconds(1f);
+        _controller.SetTriggerTurnOver();
     }
 
     public void tryReload()

@@ -15,7 +15,7 @@ public class Gamemanager : SingletonBehaviour<Gamemanager>
 
     private void Awake()
     {
-        _player.TunrOver.AddListener(Turnover);
+        _player.TurnOver.AddListener(Turnover);
     }
 
     private void Update()

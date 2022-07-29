@@ -17,7 +17,7 @@ public class Rook : Enemy
     }
     protected override void CheckAttak(GridIndex playerPos)
     {
-        
+        base.CheckAttak(playerPos);
     }
 
     protected override void arrivalPosition(GridIndex targetGrid, out Vector3 target)

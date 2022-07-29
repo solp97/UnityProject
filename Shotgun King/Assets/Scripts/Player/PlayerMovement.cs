@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Board _board;
 
+    private PlayerController _controller;
     //enum Dir
     //{
     //    Up,
@@ -20,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
     //private static readonly int[] dx = { 1, 1, 0, -1, -1, -1, 0, 1 };
     //private static readonly int[] dy = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
+    private void Awake()
+    {
+        _controller = GetComponent<PlayerController>();
+    }
+
     enum Dir
     {
         Up,
@@ -30,16 +36,13 @@ public class PlayerMovement : MonoBehaviour
         RightDown,
         Right,
         RightUp
-    };
-    private static readonly int[] dx = { 1, 1, 0, -1, -1, -1, 0, 1 };
-    private static readonly int[] dy = { 0, -1, -1, -1, 0, 1, 1, 1 };
-
-    public bool isMove = false;
+    }
 
     private float totalTime = 1f;
-
-    [SerializeField]
+    public bool isMove = false;
     private float jumpForce = 0.2f;
+    private static readonly int[] dx = { 1, 1, 0, -1, -1, -1, 0, 1 };
+    private static readonly int[] dy = { 0, -1, -1, -1, 0, 1, 1, 1 };
 
     public void isCanMove(Transform Player, Vector3 target)
     {
@@ -120,6 +123,8 @@ public class PlayerMovement : MonoBehaviour
         }
         isMove = false;
         //Debug.Log("end");
+
+        _controller.SetTriggerTurnOver();
     }
     //
     //private void CalculateCurvePoints(Vector3 start, Vector3 end, float elapsedTime)

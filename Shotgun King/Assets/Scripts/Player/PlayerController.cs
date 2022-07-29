@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
 
-    public UnityEvent<GridIndex> TunrOver = new UnityEvent<GridIndex>();
+    public UnityEvent<GridIndex> TurnOver = new UnityEvent<GridIndex>();
 
     private PlayerInput _input;
     private PlayerShoter _shoter;
@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject PlayerFigure;
     public GameObject GunFigure;
+
+    private bool _isTurnOver = false;
 
     private void Start()
     {
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour
                     if (_shoter.TryShot() && !_movement.isMove)
                     {
                         _shoter.shot(hit.point - transform.position);
-                        TunrOver.Invoke(_movement._board.PlayerPos);
+                        //TurnOver.Invoke(_movement._board.PlayerPos);
                     }
                 }
                 else
@@ -80,12 +82,24 @@ public class PlayerController : MonoBehaviour
                     {
                         _movement.isCanMove(transform, hit.point);
                         _shoter.tryReload();
-                        TunrOver.Invoke(_movement._board.PlayerPos);
+                        //TurnOver.Invoke(_movement._board.PlayerPos);
                     }
                 }
 
             }
         }
+    }
+
+    public void SetTriggerTurnOver()
+    {
+        if (_isTurnOver == true)
+        {
+            return;
+        }
+
+        _isTurnOver = true;
+        TurnOver.Invoke(_movement._board.PlayerPos);
+        _isTurnOver = false;
     }
 
 

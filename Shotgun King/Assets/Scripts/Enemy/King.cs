@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class King : Enemy
 {
-
     private void OnEnable()
     {
-        InitCooltime = 5;
+        InitCooltime = 4;
         RemainingCooltime = Random.Range(1, InitCooltime);
         Helth = 8;
         pos = new GridIndex(7, 4);
-        MoveDir = new GridIndex[1] { new GridIndex(-1, 0) };
+        MoveDir = new GridIndex[8] { new GridIndex(1, 0), new GridIndex(1, 1), new GridIndex(0, 1), new GridIndex(-1, 1), new GridIndex(-1, 0), new GridIndex(-1, -1), new GridIndex(0, -1), new GridIndex(1, -1) };
         _moveType = EMovementType.Slide;
         MoveCount = 1;
         Gamemanager.instance.OnTurnEnd += TurnCount;
         //transform.position = Gamemanager.instance.Board.BoardPan[pos.X, pos.Y];
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    protected override void CheckAttak(GridIndex playerPos)
     {
-        
+        base.CheckAttak(playerPos);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void arrivalPosition(GridIndex targetGrid, out Vector3 target)
     {
-        
+        base.arrivalPosition(targetGrid, out target);
     }
 }

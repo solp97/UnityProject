@@ -47,10 +47,11 @@ public class Pawn : Enemy
     }
 
     protected override void arrivalPosition(GridIndex targetGrid, out Vector3 target)
-
     {
         GridIndex forward = pos + MoveDir[0];
         pos = forward;
+        Debug.Log(forward);
         target = Board.BoardPan[forward.X, forward.Y];
+        Debug.Log(target);
     }
 }
