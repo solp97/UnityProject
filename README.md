@@ -19,4 +19,4 @@ Shotgun King: The Final Checkmate(https://store.steampowered.com/app/1972440/Sho
 
 프로젝트가 완료된 후 `<a>` 태그의 `href` 속성에 관련된 링크를 작성합니다.
 
-<a href="https://www.youtube.com"><img src="https://img.shields.io/badge/Youtube-FF0000?style=for-the-badge&logo=Youtube&logoColor=white"></a>
+<a href="https://www.youtu.be/FJcm49bN32c"><img src="https://img.shields.io/badge/Youtube-FF0000?style=for-the-badge&logo=Youtube&logoColor=white"></a>
